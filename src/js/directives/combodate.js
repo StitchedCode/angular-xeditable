@@ -10,7 +10,9 @@ angular.module('xeditable').directive('editableCombodate', ['editableDirectiveFa
 
         var self = this;
         combodate.$widget.find('select').bind('change', function(e) {
-          self.scope.$data = moment(combodate.getValue(), combodate.options.format);
+          if(combodate.getValue()){
+            self.scope.$data = moment(combodate.getValue(), combodate.options.format);
+          }
         });
       }
     });
