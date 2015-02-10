@@ -1,7 +1,7 @@
 /*!
 angular-xeditable - 0.1.8
 Edit-in-place for angular.js
-Build date: 2014-06-05 
+Build date: 2015-02-10 
 */
 /**
  * Angular-xeditable module 
@@ -152,19 +152,20 @@ angular.module('xeditable').directive('editableCombodate', ['editableDirectiveFa
   function(editableDirectiveFactory, editableCombodate) {
     return editableDirectiveFactory({
       directiveName: 'editableCombodate',
-      inputTpl: '<input type="text">',
+      inputTpl: '<input type="datetime">',
       render: function() {
         this.parent.render.call(this);
-        var combodate = editableCombodate.getInstance(this.inputEl, {value: new Date(this.scope.$data)});
+        var combodate = editableCombodate.getInstance(this.inputEl, angular.extend({}, {value: new Date(this.scope.$data)}, this.attrs));
 
         var self = this;
         combodate.$widget.find('select').bind('change', function(e) {
-          self.scope.$data = (new Date(combodate.getValue())).toISOString();
+          self.scope.$data = (new Date(combodate.getValue()));
         });
       }
     });
   }
 ]);
+
 /*
 Input types: text|email|tel|number|url|search|color|date|datetime|time|month|week
 */

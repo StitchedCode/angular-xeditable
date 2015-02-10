@@ -6,7 +6,7 @@ angular.module('xeditable').directive('editableCombodate', ['editableDirectiveFa
       inputTpl: '<input type="datetime">',
       render: function() {
         this.parent.render.call(this);
-        var combodate = editableCombodate.getInstance(this.inputEl, {value: new Date(this.scope.$data)});
+        var combodate = editableCombodate.getInstance(this.inputEl, angular.extend({}, {value: new Date(this.scope.$data)}, this.attrs));
 
         var self = this;
         combodate.$widget.find('select').bind('change', function(e) {
