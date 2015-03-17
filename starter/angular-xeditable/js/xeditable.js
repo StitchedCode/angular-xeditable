@@ -472,8 +472,9 @@ angular.module('xeditable').factory('editableController',
       if(self.buttons !== 'no') {
         self.buttonsEl = angular.element(theme.buttonsTpl);
         self.submitEl = angular.element(theme.submitTpl);
+        self.removeEl = angular.element(theme.removeTpl);
         self.cancelEl = angular.element(theme.cancelTpl);
-        self.buttonsEl.append(self.submitEl).append(self.cancelEl);
+        self.buttonsEl.append(self.submitEl).append(self.removeEl).append(self.cancelEl);
         self.controlsEl.append(self.buttonsEl);
         
         self.inputEl.addClass('editable-has-buttons');
