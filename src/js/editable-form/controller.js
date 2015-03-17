@@ -195,7 +195,19 @@ angular.module('xeditable').factory('editableFormController',
       });
       // self hide
       this.$hide();
-    },    
+    },
+
+    $remove: function(){
+      if (!this.$visible) {
+        return;
+      }
+      angular.forEach(this.$editables, function(editable) {
+        editable.scope.$data = null;
+        //editable.setValue(-1);
+      });
+      // self submit
+      this.$submit();
+    }, 
 
     $setWaiting: function(value) {
       this.$waiting = !!value;
