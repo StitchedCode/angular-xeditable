@@ -1,7 +1,7 @@
 /*!
 angular-xeditable - 0.1.8
 Edit-in-place for angular.js
-Build date: 2015-02-10 
+Build date: 2015-03-17 
 */
 /**
  * Angular-xeditable module 
@@ -1058,7 +1058,19 @@ angular.module('xeditable').factory('editableFormController',
       });
       // self hide
       this.$hide();
-    },    
+    },
+
+    $remove: function(){
+      if (!this.$visible) {
+        return;
+      }
+      angular.forEach(this.$editables, function(editable) {
+        editable.scope.$data = null;
+        //editable.setValue(-1);
+      });
+      // self submit
+      this.$submit();
+    }, 
 
     $setWaiting: function(value) {
       this.$waiting = !!value;
@@ -2011,12 +2023,11 @@ angular.module('xeditable').factory('editableThemes', function() {
       noformTpl:   '<span class="editable-wrap"></span>',
       controlsTpl: '<div class="editable-controls form-group" ng-class="{\'has-error\': $error}"></div>',
       inputTpl:    '',
-      errorTpl:    '<div class="editable-error help-block" ng-show="$error" ng-bind="$error"></div>',
+      errorTpl:    '<span class="editable-error editable-error-inline pull-left" ng-show="$error" ng-bind="$error"></span>',
       buttonsTpl:  '<span class="editable-buttons"></span>',
-      submitTpl:   '<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button>',
-      cancelTpl:   '<button type="button" class="btn btn-default" ng-click="$form.$cancel()">'+
-                     '<span class="glyphicon glyphicon-remove"></span>'+
-                   '</button>',
+      submitTpl:   '<button type="submit" class="btn btn-xs btn-primary"><i class="fa fa-check"></i></button>',
+      cancelTpl:   '<button type="button" class="btn btn-xs btn-default btn-link" ng-click="$form.$cancel()"><i class="fa fa-times"></i></button>',
+      removeTpl:   '<button type="button" class="btn btn-xs btn-danger" ng-click="$form.$remove()"><i class="fa fa-trash"></i></button>',
 
       //bs3 specific prop to change buttons class: btn-sm, btn-lg
       buttonsClass: '',
