@@ -43,9 +43,9 @@ angular.module('xeditable').factory('editableThemes', function() {
       inputTpl:    '',
       errorTpl:    '<span class="editable-error editable-error-inline pull-left" ng-show="$error" ng-bind="$error"></span>',
       buttonsTpl:  '<span class="editable-buttons"></span>',
-      submitTpl:   '<button type="submit" class="btn btn-xs btn-primary"><i class="fa fa-check"></i></button>',
-      cancelTpl:   '<button type="button" class="btn btn-xs btn-default btn-link" ng-click="$form.$cancel()"><i class="fa fa-times"></i></button>',
-      removeTpl:   '<button type="button" class="btn btn-xs btn-danger" ng-click="$form.$remove()"><i class="fa fa-trash"></i></button>',
+      submitTpl:   '<button type="submit" class="btn btn-xs btn-primary">SAVE</button>',
+      cancelTpl:   '<button type="button" class="btn btn-xs btn-default btn-link" ng-click="$form.$cancel()">CANCEL</i></button>',
+      removeTpl:   '<button type="button" class="btn btn-xs btn-danger" ng-click="$form.$remove()">REMOVE</button>',
 
       //bs3 specific prop to change buttons class: btn-sm, btn-lg
       buttonsClass: '',
